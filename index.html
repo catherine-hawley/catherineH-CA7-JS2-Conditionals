@@ -6,24 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bear Ninja Hunter Game</title>
     <meta name="author" content="Catherine Hawley">
-  <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-align: center;
-    padding: 50px;
-    min-height: 100vh;
-    margin: 0;
-  }
-  
-  h1 {
-    font-size: 3em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-top: 100px;
-    animation: fadeIn 1s ease-in;
-  }
-  </style>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        padding: 50px;
+        min-height: 100vh;
+        margin: 0;
+      }
+      
+      h1 {
+        font-size: 3em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-top: 100px;
+        animation: fadeIn 1s ease-in;
+      }
+      
+    
+    </style>
   </head>
 
 <body>
@@ -38,60 +40,95 @@
   console.log(amessage + ' Let\'s play!');
   alert(amessage);    
 
-  //get role choice from user
-  let userChoice = prompt("Who are you? Bear, Hunter, or Ninja: ");
-  let choiceMessage = `${uname} you picked ${userChoice}`;
+  //store game choice options in an array
+  let choices = ["bear", "hunter", "ninja"];
 
-  //display user name and role choice
-  alert(choiceMessage);
+  //loop to allow player to play again
+  let playAgain = true;
+  
+  while (playAgain) {
+    //get role choice from user
+    let userInput = prompt("Who are you? Bear, Hunter, or Ninja: ");
+    
+    //check if user hit cancel or entered invalid input
+    if (userInput === null || userInput === "") {
+        alert("Press F5 to play again.");
+        continue;
+    }
+    
+    //use forced case to standardize player input (convert to lowercase)
+    userInput = userInput.toLowerCase();
+    
+    //validate input is one of the valid choices
+    if (userInput !== "bear" && userInput !== "hunter" && userInput !== "ninja") {
+        alert("Press F5 to play again.");
+        continue;
+    }
+    
+    let choiceMessage = `${uname} you picked ${userInput}`;
 
-  //determine computer choice (hard coded as Bear)
-  let computerChoice = "Bear";
+    //display user name and role choice
+    alert(choiceMessage);
 
-  //display computer choice
-  console.log(`The computer picked ${computerChoice}!`);
-  alert(`The computer picked ${computerChoice}!`);
+    //randomize a number to use as computer choice
+    let randomIndex = Math.floor(Math.random() * 3);
+    
+    //traverse the array to extract computer choice
+    let computerChoice = choices[randomIndex];
 
-  //create combination string for switch
-  let combination = userChoice + computerChoice;
+    //display computer choice
+    console.log(`The computer picked ${computerChoice}!`);
+    alert(`The computer picked ${computerChoice}!`);
 
-  //use switch to determine the winner
-  let winner;
-  switch (combination) {
-      case "BearBear":
-          winner = "Tie";
-          break;
-      case "NinjaNinja":
-          winner = "Tie";
-          break;
-      case "HunterHunter":
-          winner = "Tie";
-          break;
-      case "BearNinja":
-          winner = "User";
-          break;
-      case "NinjaHunter":
-          winner = "User";
-          break;
-      case "HunterBear":
-          winner = "User";
-          break;
-      case "HunterNinja":
-          winner = "Computer";
-          break;
-      case "BearHunter":
-          winner = "Computer";
-          break;
-      case "NinjaBear":
-          winner = "Computer";
-          break;
-      default:
-          winner = "Error - invalid choices";
+    //create combination string for switch
+    let combination = userInput + computerChoice;
+
+    //use switch to determine the winner
+    let winner;
+    switch (combination) {
+        case "bearbear":
+            winner = "Tie";
+            break;
+        case "ninjaninja":
+            winner = "Tie";
+            break;
+        case "hunterhunter":
+            winner = "Tie";
+            break;
+        case "bearninja":
+            winner = "User";
+            break;
+        case "ninjahunter":
+            winner = "User";
+            break;
+        case "hunterbear":
+            winner = "User";
+            break;
+        case "hunterninja":
+            winner = "Computer";
+            break;
+        case "bearhunter":
+            winner = "Computer";
+            break;
+        case "ninjabear":
+            winner = "Computer";
+            break;
+        default:
+            winner = "Error - invalid choices";
+    }
+
+    //display the result
+    alert(`Winner: ${winner}`);
+    console.log(`Winner: ${winner}`);
+    
+    //ask if player wants to play again
+    let response = prompt("Do you want to play again? (yes/no): ");
+    if (response === null || response.toLowerCase() !== "yes") {
+        playAgain = false;
+        alert(`Thanks for playing, ${uname}!`);
+        console.log(`Game ended. Thanks for playing, ${uname}!`);
+    }
   }
-
-  //display the result
-  alert(`Winner: ${winner}`);
-  console.log(`Winner: ${winner}`);
 </script>
 </body>
 </html>
