@@ -6,40 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bear Ninja Hunter Game</title>
     <meta name="author" content="Catherine Hawley">
-      </head>
+  </head>
 
 <body>
 <h1>Play Bear Ninja Hunter!</h1>
  
 <script>
   //Get name from user
-let uname = prompt('Welcome to Bear, Hunter, Ninja. Please enter your name: ');
+  let uname = prompt('Welcome to Bear, Hunter, Ninja. Please enter your name: ');
 
-//diplay welcome message 
-  let amessage = `Hi,  ${uname}`;
-      console.log(amessage + ' Let\'s play!');
+  //display welcome message 
+  let amessage = `Hi, ${uname}`;
+  console.log(amessage + ' Let\'s play!');
   alert(amessage);    
 
-//get role choice from user
-let userChoice = prompt("Who are you? Bear, Hunter, or Ninja:  ");
-	let choiceMessage =  `${uname} you picked ${userChoice}`;
+  //get role choice from user
+  let userChoice = prompt("Who are you? Bear, Hunter, or Ninja: ");
+  let choiceMessage = `${uname} you picked ${userChoice}`;
 
-//display user name and role choice
-alert(choiceMessage);
+  //display user name and role choice
+  alert(choiceMessage);
 
-//display computer choice
-if (userChoice === "bear") {
-	console.log('The computer picked Ninja!');
-	alert('The computer picked Ninja!');
-}
-if (userChoice === "Ninja") {
-	console.log('The computer picked Hunter!');
-	alert('The computer picked Hunter!');
-}
-if (userChoice === "Hunter") {
-	console.log('The computer picked Bear!');
-	alert('The computer picked Bear!');
-}
+  //determine computer choice (hard coded as Bear)
+  let computerChoice = "Bear";
+
+  //display computer choice
+  console.log(`The computer picked ${computerChoice}!`);
+  alert(`The computer picked ${computerChoice}!`);
+
+  //create combination string for switch
+  let combination = userChoice + computerChoice;
+
+  //use switch to determine the winner
+  let winner;
+  switch (combination) {
+      case "BearBear":
+          winner = "Tie";
+          break;
+      case "NinjaNinja":
+          winner = "Tie";
+          break;
+      case "HunterHunter":
+          winner = "Tie";
+          break;
+      case "BearNinja":
+          winner = "User";
+          break;
+      case "NinjaHunter":
+          winner = "User";
+          break;
+      case "HunterBear":
+          winner = "User";
+          break;
+      case "HunterNinja":
+          winner = "Computer";
+          break;
+      case "BearHunter":
+          winner = "Computer";
+          break;
+      case "NinjaBear":
+          winner = "Computer";
+          break;
+      default:
+          winner = "Error - invalid choices";
+  }
+
+  //display the result
+  alert(`Winner: ${winner}`);
+  console.log(`Winner: ${winner}`);
 </script>
 </body>
 </html>
